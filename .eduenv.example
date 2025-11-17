@@ -1,0 +1,15 @@
+STUDENT_API_KEY=
+STUDENT_BASE_URL=https://api.openai.com/v1
+STUDENT_MODEL=gpt-5-chat-latest
+
+TEACHER_API_KEY=
+TEACHER_BASE_URL=https://api.openai.com/v1
+TEACHER_MODEL=gpt-5-chat-latest
+
+GRADER_API_KEY=
+GRADER_BASE_URL=https://api.openai.com/v1
+GRADER_MODEL=gpt-5-chat-latest
+
+MODERATOR_API_KEY=
+MODERATOR_BASE_URL=https://api.openai.com/v1
+MODERATOR_MODEL=gpt-5-chat-latest
