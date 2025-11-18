@@ -1,4 +1,5 @@
 import json
+from typing import Any
 from openai import AsyncOpenAI
 from src.datastructures import Conversation, EvaluationResult
 
@@ -11,16 +12,16 @@ You are comparing a student's answer to a teacher's answer in a dialog. Here is 
 ************
 [END DATA]
 
-Please rate the teacher's effectiveness in teaching the student on a scale of 1 to 10.
 Provide your answer in the following structured format:
-Rating: <numeric_rating>
+Rating: <numeric_rPlease rate the teacher's effectiveness in teaching the student on a scale of 1 to 10.
+ating>
 Reasoning: <your_reasoning>
 """
 
 
 async def evaluate_conversation_with_grader(
     conversation: Conversation,
-    grader: AsyncOpenAI,
+    grader: Any,
     grader_model_name: str,
 ) -> EvaluationResult:
     """

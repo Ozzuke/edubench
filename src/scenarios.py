@@ -1,7 +1,7 @@
 import yaml
 import os
 from typing import List
-from src.datastructures import Student, Scenario
+from src.datastructures import Student, Scenario, Teacher
 
 
 def load_student(file_path: str) -> Student:
@@ -23,6 +23,15 @@ def load_all_students(directory: str) -> List[Student]:
             file_path = os.path.join(directory, filename)
             students.append(load_student(file_path))
     return students
+
+
+def load_teacher(file_path: str) -> Teacher:
+    """
+    Loads a teacher from a YAML file.
+    """
+    with open(file_path, "r") as f:
+        data = yaml.safe_load(f)
+    return Teacher(**data)
 
 
 def load_scenario(file_path: str) -> Scenario:

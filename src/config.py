@@ -28,4 +28,7 @@ def load_config(env_file=".eduenv"):
             "base_url": os.getenv("MODERATOR_BASE_URL"),
             "model": os.getenv("MODERATOR_MODEL"),
         },
+        "braintrust": {
+            "api_key": os.getenv("BRAINTRUST_API_KEY"),
+        }
     }

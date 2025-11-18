@@ -1,11 +1,12 @@
-from src.datastructures import Student, Scenario, Conversation, Exchange
+from typing import Any
+from src.datastructures import Student, Scenario, Conversation, Exchange, Teacher
 from openai import AsyncOpenAI
 
 MODERATOR_PROMPT = """
 You are a moderator for a conversation between a student and a teacher.
 Your task is to determine if the conversation has reached a natural conclusion.
 The conversation is about a specific topic, and the student is trying to learn.
-The conversation should stop if the student has understood the topic, or if the conversation is going in circles.
+The conversation should stop if the student has understood the topic, or if the conversation is going in circles, or if it seems like student and teacher model try to teach each other.
 The conversation should also stop if the student and teacher say goodbye to each other.
 
 Here is the conversation so far:
@@ -19,13 +20,14 @@ Answer with only one word: "STOP" or "CONTINUE".
 async def generate_conversation(
     student: Student,
     scenario: Scenario,
-    teacher_model: AsyncOpenAI,
-    student_model: AsyncOpenAI,
-    moderator_model: AsyncOpenAI,
+    teacher: Teacher,
+    teacher_model: Any,
+    student_model: Any,
+    moderator_model: Any,
     student_model_name: str,
     teacher_model_name: str,
     moderator_model_name: str,
-    max_turns: int = 25,
+    max_turns: int = 10,
 ) -> Conversation:
     """
     Generates a conversation between a student and a teacher.
@@ -38,7 +40,7 @@ async def generate_conversation(
 
     # System prompts for student and teacher
     student_system_prompt = student.system_prompt
-    teacher_system_prompt = "You are a helpful teacher."
+    teacher_system_prompt = teacher.system_prompt
 
     # Initialize message histories for both models
     student_messages = [

@@ -2,10 +2,12 @@ import os
 import json
 import asyncio
 import click
+import braintrust
+from braintrust.oai import wrap_openai
 from openai import AsyncOpenAI
 from src.config import load_config
 from src.logger import get_logger
-from src.scenarios import load_all_students, load_all_scenarios
+from src.scenarios import load_all_students, load_all_scenarios, load_teacher
 from src.generator import generate_conversation
 from src.evaluation import (
     evaluate_conversation_with_grader,
@@ -20,18 +22,30 @@ logger = get_logger(__name__)
 # Load configuration
 config = load_config()
 
-# Initialize OpenAI clients
-student_client = AsyncOpenAI(
-    api_key=config["student"]["api_key"], base_url=config["student"]["base_url"]
+# Initialize Braintrust
+braintrust.init_logger(project="EduBench", api_key=config["braintrust"]["api_key"])
+
+# Initialize OpenAI clients and wrap them with Braintrust
+student_client = wrap_openai(
+    AsyncOpenAI(
+        api_key=config["student"]["api_key"], base_url=config["student"]["base_url"]
+    )
 )
-teacher_client = AsyncOpenAI(
-    api_key=config["teacher"]["api_key"], base_url=config["teacher"]["base_url"]
+teacher_client = wrap_openai(
+    AsyncOpenAI(
+        api_key=config["teacher"]["api_key"], base_url=config["teacher"]["base_url"]
+    )
 )
-grader_client = AsyncOpenAI(
-    api_key=config["grader"]["api_key"], base_url=config["grader"]["base_url"]
+grader_client = wrap_openai(
+    AsyncOpenAI(
+        api_key=config["grader"]["api_key"], base_url=config["grader"]["base_url"]
+    )
 )
-moderator_client = AsyncOpenAI(
-    api_key=config["moderator"]["api_key"], base_url=config["moderator"]["base_url"]
+moderator_client = wrap_openai(
+    AsyncOpenAI(
+        api_key=config["moderator"]["api_key"],
+        base_url=config["moderator"]["base_url"],
+    )
 )
 
 
@@ -49,6 +63,7 @@ async def async_run(output_dir: str):
     # Load all students and scenarios
     students = load_all_students("data/students")
     scenarios = load_all_scenarios("data/scenarios")
+    teacher = load_teacher("data/teacher/teacher.yaml")
 
     # Generate conversations
     conversations = []
@@ -60,22 +75,31 @@ async def async_run(output_dir: str):
             conversation = await generate_conversation(
                 student=student,
                 scenario=scenario,
+                teacher=teacher,
                 teacher_model=teacher_client,
                 student_model=student_client,
                 moderator_model=moderator_client,
-                teacher_model_name=config["teacher"]["model"],
-                student_model_name=config["student"]["model"],
-                moderator_model_name=config["moderator"]["model"],
+                teacher_model_name=config["teacher"]["model"] or "",
+                student_model_name=config["student"]["model"] or "",
+                moderator_model_name=config["moderator"]["model"] or "",
             )
             conversations.append(conversation)
 
     # Save conversations to a JSONL file
-    conversations_file = os.path.join(output_dir, "conversations.jsonl")
-    with open(conversations_file, "w") as f:
+    conversations_file_jsonl = os.path.join(output_dir, "conversations.jsonl")
+    with open(conversations_file_jsonl, "w") as f:
         for conversation in conversations:
             f.write(json.dumps(conversation.dict()) + "\n")
     logger.info(
-        f"Generated {len(conversations)} conversations and saved them to {conversations_file}"
+        f"Generated {len(conversations)} conversations and saved them to {conversations_file_jsonl}"
+    )
+
+    # Save conversations to a JSON file for easier use
+    conversations_file_json = os.path.join(output_dir, "conversations.json")
+    with open(conversations_file_json, "w") as f:
+        json.dump([c.dict() for c in conversations], f, indent=4)
+    logger.info(
+        f"Saved {len(conversations)} conversations to {conversations_file_json}"
     )
 
     # Evaluate conversations
@@ -85,7 +109,7 @@ async def async_run(output_dir: str):
         evaluation_result = await evaluate_conversation_with_grader(
             conversation=conversation,
             grader=grader_client,
-            grader_model_name=config["grader"]["model"],
+            grader_model_name=config["grader"]["model"] or "",
         )
         evaluation_results.append(evaluation_result)
 

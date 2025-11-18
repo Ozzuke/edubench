@@ -19,6 +19,11 @@ class Student(BaseModel):
     system_prompt: str
 
 
+class Teacher(BaseModel):
+    id: str
+    system_prompt: str
+
+
 class Scenario(BaseModel):
     id: str
     grade_band: int

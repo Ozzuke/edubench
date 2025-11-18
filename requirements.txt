@@ -2,7 +2,6 @@ openai
 python-dotenv
 pydantic
 pyyaml
-python-dotenv
-pydantic
 click
 ruff
+braintrust

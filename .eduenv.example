@@ -13,3 +13,5 @@ GRADER_MODEL=gpt-5-chat-latest
 MODERATOR_API_KEY=
 MODERATOR_BASE_URL=https://api.openai.com/v1
 MODERATOR_MODEL=gpt-5-chat-latest
+
+BRAINTRUST_API_KEY=
