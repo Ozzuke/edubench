@@ -34,3 +34,13 @@ class EvaluationResult(BaseModel):
     conversation_id: str
     rating: float
     reasoning: str
+    first_mile_score: float = 0.0
+    retrieval_score: float = 0.0
+    reflect_revisit_score: float = 0.0
+    interleaved_practice_score: float = 0.0
+    guided_examples_score: float = 0.0
+    high_quality_feedback_score: float = 0.0
+    socratic_reasoning_score: float = 0.0
+    misconception_diagnosis_score: float = 0.0
+    motivation_relevance_score: float = 0.0
+    beliefs_attributions_score: float = 0.0
