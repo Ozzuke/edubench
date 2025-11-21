@@ -1,0 +1,30 @@
+id: scenario_biology
+name: Plant cells and mitochondria
+subject: biology
+topic: cell biology
+grade_level: 9-10
+problem: |
+  The task is to explain why plant cells need mitochondria even though they have chloroplasts.
+  The correct concept is that chloroplasts make sugar (store energy), while mitochondria break down sugar to release energy (ATP) for the cell to use. Plants need to do both.
+  A common misconception is that "plants have chloroplasts, animals have mitochondria," or that chloroplasts directly power the cell.
+canonical_mistake: |
+  The student believes mitochondria are redundant in plants because chloroplasts already "make energy."
+initial_message: |
+  I'm confused about something in biology. If plants have chloroplasts to make energy from the sun, why do they even need mitochondria? It seems like mitochondria are just for animals or something. If the chloroplasts give them the energy they need, aren't mitochondria pointless for plants? I've heard mitochondria are the "powerhouse of the cell," but that doesn't really fit if the plant already has a solar panel (the chloroplast). Can you explain how these fit together?
+rubric:
+  goals:
+    - The tutor distinguishes between "making food" (chloroplasts) and "using food for energy" (mitochondria).
+    - The tutor explains that plants need to break down the sugar they make to do work, just like animals.
+    - The tutor checks for understanding by asking the student to explain the relationship or predict what would happen without mitochondria.
+  required_behaviors:
+    - id: distinguish_roles
+      description: "Tutor clearly separates the roles: Chloroplast = Sugar production (Photosynthesis), Mitochondria = Energy release (Respiration)."
+    - id: analogy_use
+      description: "Tutor uses an analogy (e.g., Solar panel vs. Battery/Generator, or Kitchen vs. Dining table) to explain the difference."
+    - id: check_understanding
+      description: "Tutor asks a follow-up question to ensure the student grasps why both are needed."
+  forbidden_behaviors:
+    - id: jargon_overload
+      description: "Tutor uses excessive technical terms (Krebs cycle, electron transport chain) without simple explanations."
+    - id: dismissive_correction
+      description: "Tutor simply says 'No, plants have both' without explaining the *why*."

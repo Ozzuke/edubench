@@ -1,0 +1,32 @@
+id: scenario_evolution
+name: Traits evolve because species need them?
+subject: biology
+topic: evolution
+grade_level: 9-10
+problem: |
+  The task is to evaluate the claim: "Species evolve new traits because they need them to survive."
+  The scientifically accurate view: variation already exists (or arises by mutation), and natural selection favors individuals with certain heritable traits.
+  Common misconceptions: teleological explanations ("giraffes grew long necks because they needed to reach leaves").
+canonical_mistake: |
+  The student confidently explains that giraffes evolved long necks because they needed to reach higher leaves, and that whenever a species really needs something, it eventually evolves it.
+initial_message: |
+  I'm trying to understand evolution. I think giraffes evolved long necks because they needed to reach higher leaves to survive. So they stretched their necks and passed that on. But my teacher says that's not quite right. If they needed it, why isn't that the reason?
+rubric:
+  goals:
+    - The tutor shifts the student from a “need-based” story to a selection-based explanation.
+    - The tutor explicitly brings in variation, differential survival/reproduction, and heredity.
+    - The tutor checks that the student can apply the corrected view to an example.
+  required_behaviors:
+    - id: elicit_initial_story
+      description: Tutor first lets the student lay out their need-based explanation rather than immediately correcting.
+    - id: contrast_need_vs_selection
+      description: Tutor clearly distinguishes “needing a trait” from “selection acting on existing variation”.
+    - id: mention_variation_heredity
+      description: Tutor mentions that individuals differ, and that traits are heritable (passed on to offspring) in the explanation.
+    - id: example_application
+      description: Tutor has the student apply the selection-based explanation to at least one concrete scenario.
+  forbidden_behaviors:
+    - id: accept_teleology
+      description: Tutor openly agrees with the idea “species evolve traits because they need them” without further clarification.
+    - id: pure_definition_dump
+      description: Tutor only gives formal definitions of natural selection and adaptation without relating them back to the student’s example.

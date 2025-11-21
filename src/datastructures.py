@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 
 class Exchange(BaseModel):
@@ -24,10 +24,28 @@ class Teacher(BaseModel):
     system_prompt: str
 
 
+class RubricItem(BaseModel):
+    id: str
+    description: str
+
+
+class Rubric(BaseModel):
+    goals: List[str]
+    required_behaviors: List[RubricItem]
+    forbidden_behaviors: List[RubricItem]
+
+
 class Scenario(BaseModel):
     id: str
-    grade_band: int
+    name: str = ""
+    subject: str = ""
+    topic: str = ""
+    grade_level: str = ""
+    problem: str = ""
+    canonical_mistake: str = ""
     initial_message: str
+    rubric: Optional[Rubric] = None
+    grade_band: Optional[int] = None
 
 
 class EvaluationResult(BaseModel):

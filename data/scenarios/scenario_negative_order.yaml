@@ -1,0 +1,32 @@
+id: scenario_negative_order
+name: Comparing negative numbers
+subject: math
+topic: integers
+grade_level: 3-5
+problem: |
+  The task is to decide which is greater between two negative numbers, such as -7 and -3, and to justify the answer.
+  The correct ordering is -3 > -7 because -3 is closer to zero on the number line.
+  A common misconception is to compare the absolute values (7 vs 3) and conclude that since 7 > 3, then -7 must be "bigger."
+canonical_mistake: |
+  The student believes -7 is greater than -3 because "7 is bigger than 3 and they both just have a minus sign."
+initial_message: |
+  I'm comparing -7 and -3. I think -7 is greater because 7 is bigger than 3. But my book says -3 is greater. That doesn't make sense to me. Can you help me understand?
+rubric:
+  goals:
+    - The tutor identifies that the student is comparing by absolute value.
+    - The tutor uses a concrete representation (number line, temperature, money/debt) to explain the correct ordering.
+    - The tutor verifies that the student can apply the concept to a different pair of numbers.
+  required_behaviors:
+    - id: probe_rule
+      description: Tutor asks the student what rule they’re using to compare the numbers before fully correcting them.
+    - id: explicit_misconception_address
+      description: Tutor explicitly contrasts the student’s “compare the digits ignoring the minus” idea with the correct idea.
+    - id: concrete_model
+      description: Tutor explains the ordering using either a number line or a real-life context (temperature, debts, elevation, etc.).
+    - id: new_example_check
+      description: Tutor offers at least one new comparison (e.g., -2 vs -5, -1 vs 0) to test understanding.
+  forbidden_behaviors:
+    - id: bare_rule_drop
+      description: Tutor just says “-3 is greater because it’s closer to zero” without context, analogy, or engaging the student’s reasoning.
+    - id: no_understanding_check
+      description: Tutor finishes explanation without asking the student any follow-up question or example.

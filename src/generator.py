@@ -45,7 +45,6 @@ async def generate_conversation(
     # Initialize message histories for both models
     student_messages = [
         {"role": "system", "content": student_system_prompt},
-        {"role": "user", "content": student_message},
     ]
     teacher_messages = [
         {"role": "system", "content": teacher_system_prompt},

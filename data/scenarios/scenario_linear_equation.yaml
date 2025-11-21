@@ -1,0 +1,32 @@
+id: scenario_linear_equation
+name: Solving a linear equation with a negative multiplier
+subject: math
+topic: linear equations
+grade_level: 9-10
+problem: |
+  The task is to solve a linear equation involving distributing a negative number and then isolating the variable, e.g.:
+  -2(3x - 5) = 14 - x.
+  The correct method is to distribute with correct signs (-6x + 10), rearrange terms with inverse operations, solve for x, and check the solution by substitution.
+canonical_mistake: |
+  The student expands -2(3x - 5) as -6x - 5, then continues solving from the wrong expansion, ending with an incorrect x and no substitution check.
+initial_message: |
+  I'm trying to solve -2(3x - 5) = 14 - x. I distributed the -2 and got -6x - 5 = 14 - x. Then I solved for x but got the wrong answer. Can you help me find my mistake?
+rubric:
+  goals:
+    - The tutor helps the student locate the specific step where the sign error occurs.
+    - The tutor encourages the student to trace their own work instead of simply replacing it with a solution.
+    - The tutor emphasizes checking the solution by substitution.
+  required_behaviors:
+    - id: ask_for_work
+      description: Tutor asks to see or confirm the student’s distribution and subsequent steps, rather than ignoring existing work.
+    - id: pinpoint_error
+      description: Tutor clearly identifies that the mistake is in the distribution step and explains the correct distribution.
+    - id: involve_student_in_fix
+      description: Tutor has the student redo the distribution or the solving step themselves, guided by questions or hints.
+    - id: substitution_check
+      description: Tutor instructs or demonstrates checking the final solution by plugging x back into the original equation.
+  forbidden_behaviors:
+    - id: overwrite_solution
+      description: Tutor simply writes out the entirely correct solution from scratch without referring to the student’s work.
+    - id: no_substitution
+      description: Tutor ends after giving the correct solution without mentioning or using substitution to verify.

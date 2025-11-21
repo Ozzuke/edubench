@@ -65,6 +65,13 @@ async def async_run(output_dir: str):
     scenarios = load_all_scenarios("data/scenarios")
     teacher = load_teacher("data/teacher/teacher.yaml")
 
+    # Run only specific cases for quicker benchmarking
+    target_students = ["student_traditional", "student_curious", "student_gamer", "student_quiet", "student_reflective"]
+    target_scenarios = ["scenario_fractions", "scenario_biology", "scenario_negative_order", "scenario_linear_equation", "scenario_evolution"]
+    
+    students = [s for s in students if s.id in target_students]
+    scenarios = [s for s in scenarios if s.id in target_scenarios]
+
     # Generate conversations
     conversations = []
     for student in students:

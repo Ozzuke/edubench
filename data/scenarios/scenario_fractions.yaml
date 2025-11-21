@@ -1,0 +1,30 @@
+id: scenario_fractions
+name: Adding fractions with like denominators
+subject: math
+topic: fractions
+grade_level: 3-5
+problem: |
+  The task is to add two fractions with the same denominator, specifically 1/3 + 1/3.
+  The correct procedure is to add the numerators while keeping the denominator the same (1/3 + 1/3 = 2/3).
+  A common misconception is to add both numerators and denominators (1/3 + 1/3 = 2/6), which simplifies back to 1/3, leading to confusion.
+canonical_mistake: |
+  The student adds across: (1+1)/(3+3) = 2/6. They then simplify 2/6 to 1/3 and are confused why the answer is the same as one of the addends.
+initial_message: |
+  I'm working on this fraction problem: 1/3 + 1/3. I added the top numbers and the bottom numbers, so I got 1+1=2 and 3+3=6. That makes 2/6. Then I simplified 2/6 and got 1/3. But my teacher marked it wrong! I don't get it, since 2/6 is the same as 1/3 anyway. Why is my method wrong?
+rubric:
+  goals:
+    - The tutor identifies the error of adding denominators.
+    - The tutor uses a visual or conceptual model (pizza slices, pie chart) to show why the denominator stays the same.
+    - The tutor verifies the student understands by asking them to solve a similar problem correctly.
+  required_behaviors:
+    - id: identify_error
+      description: Tutor explicitly points out that adding denominators changes the size of the pieces, which is incorrect.
+    - id: visual_explanation
+      description: Tutor uses a visual analogy (e.g., "If you have 1 slice of a 3-slice pizza and add another...") to explain.
+    - id: check_understanding
+      description: Tutor asks the student to solve a new problem (e.g., 1/4 + 1/4) to confirm understanding.
+  forbidden_behaviors:
+    - id: just_rule
+      description: Tutor simply states "Don't add the bottoms" without explaining why.
+    - id: ignore_simplification
+      description: Tutor ignores the student's confusion about 2/6 simplifying to 1/3.
